@@ -1,21 +1,43 @@
 #Nicholas Derby & Johnathan Mondragon
 # classroom hall monitor challenge
 #1
-students = ["Fred", "Jimbo","Earl", "Melanie", "Bethany"]
-time_gone = ['2', '1', '5', '7', '11']
+students = ["Alex", "Maria", "John", "Alex", "Sasha"]
+minutes_out = [3, 7, 12, 4, 9]
 
 #2
+statuses = []      # stores OK / WARNING / FLAGGED
+notes = []         # stores extra notes
+
 for i in range(len(students)):
     name = students[i]
-    minutes = time_gone[i]
-    if minutes > 10:
-        status = 'flagged'
-    elif minutes >= 6 and <= 10:
-        status = 'warning'
-    else:
-        status = 'ok'
-print(name, '>', status)
+    minutes = minutes_out[i]
+    note = ""   # will add to this if needed
 
+    # Apply hallway rules:
+    if 0 <= minutes <= 5:
+        status = "OK"
+    elif 6 <= minutes <= 10:
+        status = "WARNING"
+    else:  # > 10
+        status = "FLAGGED"
+
+
+    if students.count(name) > 1:
+        status = "FLAGGED"
+        note = "duplicate name detected"
+
+    statuses.append(status)
+    notes.append(note)
+
+
+print("=== HALL PASS REPORT ===")
+for i in range(len(students)):
+    print(f"Student: {students[i]}")
+    print(f"Minutes Out: {minutes_out[i]}")
+    print(f"Status: {statuses[i]}")
+    if notes[i] != "":
+        print(f"Notes: {notes[i]}")
+    print("------------------------")
 
 
 
